@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,18 +84,16 @@
             height: 200px;
             border-radius: 50%;
             position: relative;
-            background: conic-gradient(
-                #4d4d4d 0% 10%, 
-                #ff6666 10% 20%, 
-                #66b3ff 20% 30%, 
-                #99ff99 30% 40%, 
-                #ffcc00 40% 50%, 
-                #cc99ff 50% 60%, 
-                #ff9966 60% 70%, 
-                #66cccc 70% 80%, 
-                #cc66cc 80% 90%, 
-                #6699cc 90% 100%
-            );
+            background: conic-gradient(#4d4d4d 0% 10%,
+                    #ff6666 10% 20%,
+                    #66b3ff 20% 30%,
+                    #99ff99 30% 40%,
+                    #ffcc00 40% 50%,
+                    #cc99ff 50% 60%,
+                    #ff9966 60% 70%,
+                    #66cccc 70% 80%,
+                    #cc66cc 80% 90%,
+                    #6699cc 90% 100%);
         }
 
         .percentage {
@@ -106,34 +105,41 @@
             color: #080808;
         }
     </style>
-</head>
-<body>
-    <h1> Saar Pariksha Quiz</h1>
-    <div class="container">
-        <div class="question"> twak Saar Pariksha?</div>
-        <div class="options">
-            <div class="option" onclick="checkAnswer(this)">oily skin</div>
-            <div class="option" onclick="checkAnswer(this)">smooth</div>
-            <div class="option" onclick="checkAnswer(this)">healthy</div>
-            <div class="option" onclick="checkAnswer(this)">delicate hairy</div>
-            <div class="option" onclick="checkAnswer(this)">lusture</div>
-            <div class="option" onclick="checkAnswer(this)">happiness</div>
-            <div class="option" onclick="checkAnswer(this)">Good fortune</div>
-            <div class="option" onclick="checkAnswer(this)">power</div>
-            <div class="option" onclick="checkAnswer(this)">intelligent</div>
-            <div class="option" onclick="checkAnswer(this)">enjoyment</div>
-<div class="option" onclick="checkAnswer(this)">knowledge</div>
-<div class="option" onclick="checkAnswer(this)">healthy</div>
-        </div>
-        <div class="result">Result: <span id="result"></span></div>
-        <div class="chart-container">
-            <div class="pie-chart" id="pieChart">
-                <div class="percentage" id="percentage">0%</div>
-            </div>
-        </div>
-    </div>
-
     <script>
+        function changeLanguage() {
+            var currentLanguage = document.documentElement.lang;
+
+            // Toggle between English and Hindi
+            if (currentLanguage === "en") {
+                document.documentElement.lang = "hi";
+                document.getElementById("quizTitle").innerText = "सार परीक्षा क्विज";
+                document.getElementById("questionText").innerText = "त्वचा सार परीक्षा?";
+                document.getElementById("resultText").innerText = "परिणाम:";
+                updateOptionsLanguage("hi");
+            } else {
+                document.documentElement.lang = "en";
+                document.getElementById("quizTitle").innerText = "Saar Pariksha Quiz";
+                document.getElementById("questionText").innerText = "What is Saar Pariksha?";
+                document.getElementById("resultText").innerText = "Result:";
+                updateOptionsLanguage("en");
+            }
+        }
+
+        function updateOptionsLanguage(language) {
+            var options = document.querySelectorAll(".option");
+            var optionTexts = [];
+
+            if (language === "en") {
+                optionTexts = ["Oily Skin", "Smooth", "Healthy", "Delicate Hairy", "Lustre", "Happiness", "Good Fortune", "Power", "Intelligent", "Enjoyment", "Knowledge", "Healthy"];
+            } else if (language === "hi") {
+                optionTexts = ["तैलीय त्वचा", "मुलायम", "स्वस्थ", "कोमल बालों वाला", "चमक", "खुशी", "अच्छा भाग्य", "शक्ति", "बुद्धिमान", "आनंद", "ज्ञान", "स्वस्थ"];
+            }
+
+            options.forEach(function (option, index) {
+                option.innerText = optionTexts[index];
+            });
+        }
+
         function checkAnswer(option) {
             // Toggle the selected option's correctness
             option.classList.toggle("correct");
@@ -145,7 +151,35 @@
             document.getElementById("percentage").innerText = percentage.toFixed(2) + "%";
         }
     </script>
+</head>
+
+<body>
+    <h1 id="quizTitle"> Saar Pariksha Quiz</h1>
+    <div class="container">
+        <button onclick="changeLanguage()">Change Language</button>
+
+        <div id="questionText" class="question"> twak Saar Pariksha?</div>
+        <div class="options">
+            <div class="option" onclick="checkAnswer(this)">oily skin</div>
+            <div class="option" onclick="checkAnswer(this)">smooth</div>
+            <div class="option" onclick="checkAnswer(this)">healthy</div>
+            <div class="option" onclick="checkAnswer(this)">delicate hairy</div>
+            <div class="option" onclick="checkAnswer(this)">lusture</div>
+            <div class="option" onclick="checkAnswer(this)">happiness</div>
+            <div class="option" onclick="checkAnswer(this)">Good fortune</div>
+            <div class="option" onclick="checkAnswer(this)">power</div>
+            <div class="option" onclick="checkAnswer(this)">intelligent</div>
+            <div class="option" onclick="checkAnswer(this)">enjoyment</div>
+            <div class="option" onclick="checkAnswer(this)">knowledge</div>
+            <div class="option" onclick="checkAnswer(this)">healthy</div>
+        </div>
+        <div id="resultText" class="result">Result: <span id="result"></span></div>
+        <div class="chart-container">
+            <div class="pie-chart" id="pieChart">
+                <div class="percentage" id="percentage">0%</div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
-
-
